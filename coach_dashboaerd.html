@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head><title>Coach Dashboard</title></head>
+<body>
+    <h1>Coach Dashboard</h1>
+    <p>Welcome, Coach {{ current_user.username }}</p>
+    <a href="{{ url_for('add_user') }}">Add New User</a><br>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

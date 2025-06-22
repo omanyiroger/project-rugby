@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add User</title></head>
+<body>
+    <h1>Add New User</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <p style="color: rgb(128, 58, 0);">{{ message }}</p>
+      {% endfor %}
+    {% endwith %}
+    <form method="POST">
+        Username: <input name="username"><br>
+        Password: <input name="password" type="password"><br>
+        Role:
+        <select name="role">
+            <option value="player">Player</option>
+            <option value="coach">Coach</option>
+            <option value="physio">Physio</option>
+        </select><br>
+        <button type="submit">Add User</button>
+    </form>
+    <br><a href="{{ url_for('coach_dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<ul>
+    <div class="menu-list">
+    <a href="{{ url_for('add_player') }}"       class="menu-link"><span class="menu-icon">➕</span> Add New Player</a>
+    <a href="{{ url_for('log_injury') }}"      class="menu-link"><span class="menu-icon">🏥</span> Log Injury</a>
+    <a href="{{ url_for('update_rehab') }}"    class="menu-link"><span class="menu-icon">📝</span> Update Rehabilitation</a>
+    <a href="{{ url_for('medical_report') }}"  class="menu-link"><span class="menu-icon">📄</span> Generate Medical Report</a>
+    <a href="{{ url_for('set_availability') }}" class="menu-link"><span class="menu-icon">☑️</span> Set Player Availability</a>
+    <a href="{{ url_for('view_availability') }}" class="menu-link"><span class="menu-icon">👀</span> View Availability</a>
+    <a href="{{ url_for('select_first_team') }}"  class="menu-link"><span class="menu-icon">🏉</span> Select First Team</a>
+    <a href="{{ url_for('view_first_team') }}"    class="menu-link"><span class="menu-icon">👕</span> View First Team</a>
+    <a href="{{ url_for('select_second_team') }}" class="menu-link"><span class="menu-icon">🏉</span> Select Second Team</a>
+    <a href="{{ url_for('view_second_team') }}"   class="menu-link"><span class="menu-icon">👕</span> View Second Team</a>
+    <a href="{{ url_for('view_injuries') }}" class="menu-link"><span class="menu-icon">⚕</span> View Injuries</a>
+    <a href="{{ url_for('set_strapping') }}" class="menu-link"><span class="menu-icon">✍️</span> Mark Player for Strapping</a>
+    <a href="{{ url_for('view_strapping') }}"     class="menu-link"><span class="menu-icon">🩸</span> View Strapping List</a>
+    <a href="{{ url_for('about') }}" class="menu-link"><span class="menu-icon">ℹ️</span> About</a>
+    <a href="{{ url_for('logout') }}" class="menu-link"><span class="menu-icon">🚪</span> Logout</a>
+</div>
+<h2>Player List</h2>
+<table border="1">
+    <tr>
+        <th>Player ID</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Age</th>
+        <th>Position</th>
+        <th>Actions</th>
+    </tr>
+    {% for player in players %}
+    <tr>
+        <td>{{ player['player_id'] }}</td>
+        <td>{{ player['name'] }}</td>
+        <td>{{ player['dob'] }}</td>
+        <td>{{ player['age'] }}</td>
+        <td>{{ player['position'] }}</td>
+        <td>
+            <a href="{{ url_for('edit_player', player_id=player['player_id']) }}">Edit</a>
+            <form action="{{ url_for('delete_player', player_id=player['player_id']) }}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this player?');">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

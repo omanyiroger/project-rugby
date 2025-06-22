@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <title>RCMIS - Home</title>
+</head>
+<body>
+    <h1>Welcome to the Rugby Care Management Information System (RCMIS)</h1>
+
+    {% if current_user.is_authenticated %}
+        <p>You are logged in as <strong>{{ current_user.email }}</strong> (role: {{ current_user.role }})</p>
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Go to Dashboard</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</body>
+</html>
